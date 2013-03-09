@@ -25,9 +25,9 @@ $scanner->scan();
 class SimpleFixScanner {
   var $fileTypeToScan = array('php','html','htm','tpl',);
 	var $fixList = array(
-			'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
-			'Trojan 336988' => 'fix336988',
-			'Trojan 68c8c7' => 'fix68c8c7',
+		//'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
+		'Trojan 336988' => 'fix336988',
+		'Trojan 68c8c7' => 'fix68c8c7',
 
 	);
 	var $startTime;
