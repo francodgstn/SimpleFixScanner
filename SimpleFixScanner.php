@@ -23,17 +23,18 @@ $scanner->scan();
  *
  */
 class SimpleFixScanner {
-  var $fileTypeToScan = array('php','html','htm','tpl',);
-	var $fixList = array(
-		//'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
+	var $fileTypeToScan = array('php','html','htm','tpl',); // Extensions of the files to scan
+	var $memoryLimit = "200M"; 			// Php memory limit, adjust if needed
+	var $maxExecutionTime = "300";		// Php max execution time, adjust if needed
+	var $docRoot = null;				// Initial directory where start the scan process (null = server root; otherwise insert a custom path)
+	var $fixList = array(				// Array for fix method callback ('Trojan name' => 'fixFunction')
 		'Trojan 336988' => 'fix336988',
 		'Trojan 68c8c7' => 'fix68c8c7',
-
+		//'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
 	);
+
+	// Don't modify
 	var $startTime;
-	var $memoryLimit = "200M";
-	var $maxExecutionTime = "300";
-	var $docRoot;
 	var $filesToScan;
 	var $filesScannedCount = 0;
 	var $filesFixed = array();
