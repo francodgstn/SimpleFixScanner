@@ -10,8 +10,8 @@ Place the script somewhere on the server and point it with the browser.
 By default the scanner start the scan process from the SERVER_ROOT, if you want to scan a specific directory you have to specify the path on the $docRoot parameter.
 
 
-Currently supported trojan
+Currently supported fix
 ================
-- 336988 (Thanks to fatsouls32 for the regex - http://www.freestuff.gr/forums/viewtopic.php?t=64419)
-- 68c8c7 (method added by Brett)
+- 336988 Injection Trojan and its variants [336988, 68c8c7, 8f4d8e],  thanks to fatsouls32 for 336988 regex fix - http://www.freestuff.gr/forums/viewtopic.php?t=64419 and to Brett and Paul for the variants
+
 

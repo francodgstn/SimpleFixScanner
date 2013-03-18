@@ -13,11 +13,11 @@ $scanner->scan();
  * simply add a method that give in input a filepath and return
  * the appropriate exit status (see FixExitStatus class for details), and add the
  * trojan name and the method name to the fixList[] array for the callback.
- * See fix336988() for an example.
+ * See fix336988InjectionAndVariants() for an example.
  *
- * Currently supported trojan:
- * - 336988 (Thanks to fatsouls32 - http://www.freestuff.gr/forums/viewtopic.php?t=64419 for 336988 regex fix)
- * - 68c8c7 method added by Brett
+ * Currently supported fix:
+ * - 336988 Injection Trojan and its variants [336988, 68c8c7, 8f4d8e] - @see fix336988InjectionAndVariants(),
+ *   thanks to fatsouls32 for 336988 regex fix - http://www.freestuff.gr/forums/viewtopic.php?t=64419 and to Brett and Paul for the variants
  *
  * @author Franco D'Agostino franco.dgstn@gmail.com
  *
@@ -28,8 +28,8 @@ class SimpleFixScanner {
 	var $maxExecutionTime = "300";		// Php max execution time, adjust if needed
 	var $docRoot = null;				// Initial directory where start the scan process (null = server root; otherwise insert a custom path)
 	var $fixList = array(				// Array for fix method callback ('Trojan name' => 'fixFunction')
-		'Trojan 336988' => 'fix336988',
-		'Trojan 68c8c7' => 'fix68c8c7',
+		'Injection Trojan 336988 or variant' => 'fix336988InjectionAndVariants',
+
 		//'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
 	);
 
@@ -58,46 +58,20 @@ class SimpleFixScanner {
 	}
 
 	/**
-	 * Check and fix file for:
-	 * 336988 Trojan
+	 * Check and fix file for some common code injection trojan:
+	 *  - 336988
+	 *  - 68c8c7 thanks to Brett
+	 *  - 8f4d8e thanks to Paul
+	 *
 	 * @param unknown $path
 	 * @return FILE_FIXED if trojan foud and fixed; otherwise FILE_OK;
 	 */
-	function fix336988( $path ) {
+	function fix336988InjectionAndVariants( $path ) {
 		$fileFixed = false;
 		$regexPaterns = array(
-				"/#336988#(.*?)#\/336988#/ism", 			// php
-				"/\<!--336988-->(.*?)\<!--\/336988-->/ism",	// html
-				'#(/\*336988\*/).*?(/\*/336988\*/)#ism', 	//js
-		);
-		$data = file_get_contents($path);
-
-		foreach ($regexPaterns as $regex) {
-			if (preg_match($regex,$data)){
-				// If foud, replace malicious code with empty string
-				$data = preg_replace($regex,"",$data);
-				$fileFixed =  FixExitStatus::FILE_FIXED;
-			}
-		}
-		if ($fileFixed != FixExitStatus::FILE_OK)
-			file_put_contents( $path, $data);
-
-		return $fileFixed;
-	}
-
-
-	/**
-	 * Check and fix file for:
-	 * 68c8c7 Trojan
-	 * @param unknown $path
-	 * @return FILE_FIXED if trojan foud and fixed; otherwise FILE_OK;
-	 */
-	function fix68c8c7( $path ) {
-		$fileFixed = false;
-		$regexPaterns = array(
-				"/#68c8c7#(.*?)#\/68c8c7#/ism",             // php
-				"/\<!--68c8c7-->(.*?)\<!--\/68c8c7-->/ism", // html
-				'#(/\*68c8c7\*/).*?(/\*/68c8c7\*/)#ism',    //js
+				'/#336988#(.*?)#\/336988#/ism', '/\<!--336988-->(.*?)\<!--\/336988-->/ism', '#(/\*336988\*/).*?(/\*/336988\*/)#ism', 	 //Trojan 336988 (php, html and js versions)
+				'/#68c8c7#(.*?)#\/68c8c7#/ism', '/\<!--68c8c7-->(.*?)\<!--\/68c8c7-->/ism', '#(/\*68c8c7\*/).*?(/\*/68c8c7\*/)#ism', 	 //Trojan 68c8c7 (php, html and js versions)
+				'/#8f4d8e#(.*?)#\/8f4d8e#/ism', '/\<!--8f4d8e-->(.*?)\<!--\/8f4d8e-->/ism', '#(/\*8f4d8e\*/).*?(/\*/8f4d8e\*/)#ism', 	 //Trojan 8f4d8e (php, html and js versions)
 		);
 		$data = file_get_contents($path);
 
