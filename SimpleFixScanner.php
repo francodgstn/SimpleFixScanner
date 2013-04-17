@@ -23,7 +23,7 @@ $scanner->scan();
  *
  */
 class SimpleFixScanner {
-	var $fileTypeToScan = array('php','html','htm','tpl',); // Extensions of the files to scan
+	var $fileTypeToScan = array('php','html','htm','tpl', 'htaccess'); // Extensions of the files to scan
 	var $memoryLimit = "200M"; 			// Php memory limit, adjust if needed
 	var $maxExecutionTime = "300";		// Php max execution time, adjust if needed
 	var $docRoot = null;				// Initial directory where start the scan process (null = server root; otherwise insert a custom path)
@@ -69,9 +69,10 @@ class SimpleFixScanner {
 	function fix336988InjectionAndVariants( $path ) {
 		$fileFixed = false;
 		$regexPaterns = array(
-				'/#336988#(.*?)#\/336988#/ism', '/\<!--336988-->(.*?)\<!--\/336988-->/ism', '#(/\*336988\*/).*?(/\*/336988\*/)#ism', 	 //Trojan 336988 (php, html and js versions)
-				'/#68c8c7#(.*?)#\/68c8c7#/ism', '/\<!--68c8c7-->(.*?)\<!--\/68c8c7-->/ism', '#(/\*68c8c7\*/).*?(/\*/68c8c7\*/)#ism', 	 //Trojan 68c8c7 (php, html and js versions)
-				'/#8f4d8e#(.*?)#\/8f4d8e#/ism', '/\<!--8f4d8e-->(.*?)\<!--\/8f4d8e-->/ism', '#(/\*8f4d8e\*/).*?(/\*/8f4d8e\*/)#ism', 	 //Trojan 8f4d8e (php, html and js versions)
+				'/#336988#(.*?)#\/336988#/ism', '/\<!--336988-->(.*?)\<!--\/336988-->/ism', '#(/\*336988\*/).*?(/\*/336988\*/)#ism',	//Trojan 336988 (php, html and js versions)
+				'/#68c8c7#(.*?)#\/68c8c7#/ism', '/\<!--68c8c7-->(.*?)\<!--\/68c8c7-->/ism', '#(/\*68c8c7\*/).*?(/\*/68c8c7\*/)#ism',	//Trojan 68c8c7 (php, html and js versions)
+				'/#8f4d8e#(.*?)#\/8f4d8e#/ism', '/\<!--8f4d8e-->(.*?)\<!--\/8f4d8e-->/ism', '#(/\*8f4d8e\*/).*?(/\*/8f4d8e\*/)#ism',	//Trojan 8f4d8e (php, html and js versions)
+				'/#a59dc4#(.*?)#\/a59dc4#/ism', '/\<!--a59dc4-->(.*?)\<!--\/a59dc4-->/ism', '#(/\*a59dc4\*/).*?(/\*/a59dc4\*/)#ism',	//Trojan a59dc4 (php, html and js versions)
 		);
 		$data = file_get_contents($path);
 
