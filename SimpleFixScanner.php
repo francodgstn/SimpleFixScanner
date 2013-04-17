@@ -16,7 +16,7 @@ $scanner->scan();
  * See fix336988InjectionAndVariants() for an example.
  *
  * Currently supported fix:
- * - 336988 Injection Trojan and its variants [336988, 68c8c7, 8f4d8e] - @see fix336988InjectionAndVariants(),
+ * - 336988 Injection Trojan and its variants [336988, 68c8c7, 8f4d8e, a59dc4] - @see fix336988InjectionAndVariants(),
  *   thanks to fatsouls32 for 336988 regex fix - http://www.freestuff.gr/forums/viewtopic.php?t=64419 and to Brett and Paul for the variants
  *
  * @author Franco D'Agostino franco.dgstn@gmail.com
@@ -62,6 +62,7 @@ class SimpleFixScanner {
 	 *  - 336988
 	 *  - 68c8c7 thanks to Brett
 	 *  - 8f4d8e thanks to Paul
+	 *  - a59dc4 thanks to Paul
 	 *
 	 * @param unknown $path
 	 * @return FILE_FIXED if trojan foud and fixed; otherwise FILE_OK;
