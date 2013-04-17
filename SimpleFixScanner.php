@@ -29,7 +29,6 @@ class SimpleFixScanner {
 	var $docRoot = null;				// Initial directory where start the scan process (null = server root; otherwise insert a custom path)
 	var $fixList = array(				// Array for fix method callback ('Trojan name' => 'fixFunction')
 		'Injection Trojan 336988 or variant' => 'fix336988InjectionAndVariants',
-
 		//'Scanner Regex Check'=>'devCheckRegex', //Use to check wich files are scannd
 	);
 
