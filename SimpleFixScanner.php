@@ -6,17 +6,17 @@ $scanner = new SimpleFixScanner();
 $scanner->scan();
 
 /**
- * Simple trojan scanner to fix some tedious trojan, that
+ * Simple trojan scanner to fix some tedious trojans that
  * corrupt some files on the server.
  *
  * You can modify this code as you need, to add a new trojan fix
- * simply add a method that give in input a filepath and return
+ * simply add a method that takes in input a filepath and return
  * the appropriate exit status (see FixExitStatus class for details), and add the
  * trojan name and the method name to the fixList[] array for the callback.
  * See fix336988InjectionAndVariants() for an example.
  *
  * Currently supported fix:
- * - 336988 Injection Trojan and its variants [336988, 68c8c7, 8f4d8e, a59dc4] - @see fix336988InjectionAndVariants(),
+ * - 336988 Injection Trojan and variants [336988, 68c8c7, 8f4d8e, a59dc4] - @see fix336988InjectionAndVariants(),
  *   thanks to fatsouls32 for 336988 regex fix - http://www.freestuff.gr/forums/viewtopic.php?t=64419 and to Brett and Paul for the variants
  *
  * @author Franco D'Agostino franco.dgstn@gmail.com
@@ -41,12 +41,12 @@ class SimpleFixScanner {
 
 	/*
 	 * Start Fix Functions
-	 * Add your custom fix function here, then update the $fixList array.
+	 * Add your custom fix function here and then update the $fixList array.
 	 * ========================================================================
 	 */
 
 	/**
-	 * Return true, just for check if the regex works.
+	 * Check if the regex works.
 	 * @param unknown $path
 	 */
 	function devCheckRegex($path) {
@@ -57,7 +57,7 @@ class SimpleFixScanner {
 	}
 
 	/**
-	 * Check and fix file for some common code injection trojan:
+	 * Check and fix files for some code injection trojan:
 	 *  - 336988
 	 *  - 68c8c7 thanks to Brett
 	 *  - 8f4d8e thanks to Paul
@@ -161,7 +161,7 @@ class SimpleFixScanner {
 	}
 
 	/**
-	 * Helper to get the list of the files to scan
+	 * Helper to get the list of files to scan
 	 * @param unknown $rootDir Root directory to scan
 	 * @return RegexIterator
 	 */
