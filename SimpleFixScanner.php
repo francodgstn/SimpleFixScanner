@@ -73,6 +73,7 @@ class SimpleFixScanner {
 				'/#68c8c7#(.*?)#\/68c8c7#/ism', '/\<!--68c8c7-->(.*?)\<!--\/68c8c7-->/ism', '#(/\*68c8c7\*/).*?(/\*/68c8c7\*/)#ism',	//Trojan 68c8c7 (php, html and js versions)
 				'/#8f4d8e#(.*?)#\/8f4d8e#/ism', '/\<!--8f4d8e-->(.*?)\<!--\/8f4d8e-->/ism', '#(/\*8f4d8e\*/).*?(/\*/8f4d8e\*/)#ism',	//Trojan 8f4d8e (php, html and js versions)
 				'/#a59dc4#(.*?)#\/a59dc4#/ism', '/\<!--a59dc4-->(.*?)\<!--\/a59dc4-->/ism', '#(/\*a59dc4\*/).*?(/\*/a59dc4\*/)#ism',	//Trojan a59dc4 (php, html and js versions)
+				'@(/\*aef9d\*/).*?(/\*aef9d\*/)@ism' //Trojan aef9d (js versions)
 		);
 		$data = file_get_contents($path);
 
